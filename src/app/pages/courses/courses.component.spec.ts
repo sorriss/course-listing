@@ -1,4 +1,4 @@
-import {ComponentFixture, TestBed, fakeAsync, flush, tick, waitForAsync} from '@angular/core/testing';
+import {ComponentFixture, TestBed, fakeAsync, flush} from '@angular/core/testing';
 
 import {CoursesComponent} from './courses.component';
 import {DebugElement} from "@angular/core";
