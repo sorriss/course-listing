@@ -1,3 +1,7 @@
+# How to run the project
+1st terminal: `npm run start:server` to start the server
+2nd terminal: `npm run start` to start the client
+
 # CourseListing
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.

@@ -1,0 +1,30 @@
+.title {
+  span {
+    color: #27a2ae
+  }
+}
+.wrapper {
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 32px;
+    .con {
+      margin-bottom: 16px;
+      .label {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+      width: calc(100% - 8px);
+      &:nth-child(odd) {
+        margin-right: 8px;
+      }
+      &:nth-child(even) {
+        margin-left: 8px;
+      }
+      mat-form-field {
+        width: 100%;
+      }
+    }
+  }
+}
