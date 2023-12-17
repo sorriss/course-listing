@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -23,6 +23,7 @@ import { CoursesService } from './courses.service';
     MatIconModule,
     MatTableModule,
     RouterLink,
+    NgOptimizedImage,
   ],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.scss',

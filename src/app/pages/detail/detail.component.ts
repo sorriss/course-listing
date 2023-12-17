@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import {Component, Input, inject, OnChanges} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DetailService } from './detail.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
+import {AsyncPipe, NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import {
@@ -35,6 +35,7 @@ import { Observable, Subject, firstValueFrom, of } from 'rxjs';
     NgForOf,
     NgIf,
     MatChipsModule,
+    NgOptimizedImage,
   ],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.scss',
@@ -42,8 +43,13 @@ import { Observable, Subject, firstValueFrom, of } from 'rxjs';
 export class DetailComponent {
   @Input() id: string = '';
   private detailService = inject(DetailService);
-  public course$: Observable<CourseDetailInterface> = this.detailService.getData(this.id);
+  public course$!: Observable<CourseDetailInterface>;
   public readonly separatorKeysCodes = [ENTER, COMMA] as const;
+
+  ngOnInit() {
+    debugger
+    this.course$ = this.detailService.getData(this.id);
+  }
 
   public async add(event: MatChipInputEvent): Promise<void> {
     const value = (event.value || '').trim();

@@ -7,11 +7,12 @@ import { CourseInterface } from '../../interfaces/course.interface';
   providedIn: 'root',
 })
 export class CoursesService {
-  public filter$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
-  constructor(private apiService: ApiService) {}
+  public filter$: BehaviorSubject<string[]> = new BehaviorSubject([] as string[]);
+  constructor(private apiService: ApiService) {
+  }
   public getData(): Observable<CourseInterface[]> {
     return this.apiService.get<CourseInterface[]>('/api/courses').pipe(
-      tap(this.prepFilterData)
+      tap(res => this.prepFilterData(res))
     );
   }
 
@@ -22,7 +23,6 @@ export class CoursesService {
         statusArr.push(item.status);
       }
     });
-
     this.filter$.next(statusArr);
   }
 }

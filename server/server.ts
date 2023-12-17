@@ -1,4 +1,4 @@
-import express from 'express';
+const express = require('express');
 import { Application } from 'express';
 import { getAllCourses, getCourseById } from './get-courses.route';
 
