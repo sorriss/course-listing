@@ -41,15 +41,12 @@ import { Observable, Subject, firstValueFrom, of } from 'rxjs';
   styleUrl: './detail.component.scss',
 })
 export class DetailComponent {
-  @Input() id: string = '';
+  @Input() set id(value: string) {
+    this.course$ = this.detailService.getData(value);
+  };
   private detailService = inject(DetailService);
   public course$!: Observable<CourseDetailInterface>;
   public readonly separatorKeysCodes = [ENTER, COMMA] as const;
-
-  ngOnInit() {
-    debugger
-    this.course$ = this.detailService.getData(this.id);
-  }
 
   public async add(event: MatChipInputEvent): Promise<void> {
     const value = (event.value || '').trim();

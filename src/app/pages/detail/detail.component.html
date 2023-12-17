@@ -24,7 +24,7 @@
         <div class="label">Course card images</div>
         <ng-container *ngFor="let img of course.images">
           <div class="img-wrap">
-            <img [ngSrc]="img" alt="Course Image" width="300" height="300" />
+            <img [ngSrc]="img" alt="Course Image" width="300" height="300" priority="true"/>
           </div>
         </ng-container>
       </div>
