@@ -1,23 +1,19 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, map, Observable} from "rxjs";
-import {ApiService} from "../../services/api/api.service";
-import {CourseInterface} from "../../interfaces/course.interface";
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { ApiService } from '../../services/api/api.service';
+import { CourseInterface } from '../../interfaces/course.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CoursesService {
-  public filter$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
+  public filter$: BehaviorSubject<string[]> = new BehaviorSubject([] as string[]);
   constructor(private apiService: ApiService) {
   }
   public getData(): Observable<CourseInterface[]> {
-    return this.apiService.get<CourseInterface[]>('/api/courses')
-      .pipe(
-        map(res => {
-          this.prepFilterData(res);
-          return res;
-        })
-      );
+    return this.apiService.get<CourseInterface[]>('/api/courses').pipe(
+      tap(res => this.prepFilterData(res))
+    );
   }
 
   private prepFilterData(data: CourseInterface[]): void {
@@ -27,7 +23,6 @@ export class CoursesService {
         statusArr.push(item.status);
       }
     });
-
     this.filter$.next(statusArr);
   }
 }
